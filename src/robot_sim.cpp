@@ -3,7 +3,7 @@
 #include <nav_msgs/Odometry.h>
 #include <tf/tf.h>
 
-// Create global variable to store the commanded linear and angular velocities
+// Create global variable to store the commanded linear and angular velocities. The letter 'u' is used to denote its role in the Kalman filter.
 double g_uv = 0;
 double g_uomega = 0;
 
@@ -23,7 +23,8 @@ int main(int argc, char **argv)
   // Create a publisher object to publish the determined state of the robot. Odometry messages contain both Pose and Twist with covariance. In this simulator, we will not worry about the covariance.
   ros::Publisher robot_statePub = n.advertise<nav_msgs::Odometry>("odom",1);
 
-  ros::Subscriber cmd_velSub= n.subscribe("cmd_vel",1,cmd_velCB);
+  // Create a subscriber object to subscribe to the topic cmd_vel, which will receive a Twist message that contains the commanded velocity of the robot.
+  ros::Subscriber cmd_velSub = n.subscribe("cmd_vel",1,cmd_velCB);
 
 
   // Create an Odometry message to store the robot state
@@ -49,13 +50,18 @@ int main(int argc, char **argv)
     {
       // Spin to check for messages published to our subscribed topic(s)
       ros::spinOnce();
-      // Update the state estimate using x_p and u
+
+      // Update the state estimate using x_p (the vector) and u
+
+      ////////////////////////////////////////////////////////////
+      // This section must be filled in with the correct equations
       x = x_p + 0;
       y = y_p + 0;
       theta = theta_p + 0;
 
       v = g_uv;
       omega = g_uomega;
+      ////////////////////////////////////////////////////////////
 
       // Stuff these state variables into our Odometry message, robot_state
       robot_state.pose.pose.position.x = x;
@@ -67,13 +73,13 @@ int main(int argc, char **argv)
       // and publish the state. Note that no covariances or 3D fields are used.
       robot_statePub.publish(robot_state);
 
-
       // Set the previous state equal to the current state for the next loop
       x_p = x;
       y_p = y;
       theta_p = theta;
       v_p = v;
       omega_p = omega;
+
       //next line will cause the loop to sleep for the balance of the desired period to achieve the specified loop frequency
       naptime.sleep();
     }
