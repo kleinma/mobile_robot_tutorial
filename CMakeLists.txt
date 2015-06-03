@@ -108,6 +108,7 @@ include_directories(
 ## Declare a cpp executable
 # add_executable(mobile_robot_tutorial_node src/mobile_robot_tutorial_node.cpp)
 add_executable(robot_sim src/robot_sim.cpp)
+add_executable(wheel_sim src/wheel_sim.cpp)
 
 ## Add cmake target dependencies of the executable/library
 ## as an example, message headers may need to be generated before nodes
@@ -118,6 +119,7 @@ add_executable(robot_sim src/robot_sim.cpp)
 #   ${catkin_LIBRARIES}
 # )
 target_link_libraries(robot_sim ${catkin_LIBRARIES})
+target_link_libraries(wheel_sim ${catkin_LIBRARIES})
 
 #############
 ## Install ##
