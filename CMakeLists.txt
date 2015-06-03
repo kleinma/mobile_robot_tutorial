@@ -6,9 +6,11 @@ project(mobile_robot_tutorial)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
   geometry_msgs
+  nav_msgs
   roscpp
   rospy
   std_msgs
+  tf
 )
 
 ## System dependencies are found with CMake's conventions
@@ -105,6 +107,7 @@ include_directories(
 
 ## Declare a cpp executable
 # add_executable(mobile_robot_tutorial_node src/mobile_robot_tutorial_node.cpp)
+add_executable(robot_sim src/robot_sim.cpp)
 
 ## Add cmake target dependencies of the executable/library
 ## as an example, message headers may need to be generated before nodes
@@ -114,6 +117,7 @@ include_directories(
 # target_link_libraries(mobile_robot_tutorial_node
 #   ${catkin_LIBRARIES}
 # )
+target_link_libraries(robot_sim ${catkin_LIBRARIES})
 
 #############
 ## Install ##
