@@ -21,12 +21,14 @@ int main(int argc, char **argv)
   ros::NodeHandle n; // two lines to create a publisher object that can talk to ROS
 
   // Create a publisher object to publish the determined state of the robot. Odometry messages contain both Pose and Twist with covariance. In this simulator, we will not worry about the covariance.
-  ros::Publisher robot_statePub = n.advertise<nav_msgs::Odometry>("robot_state",1);
+  ros::Publisher robot_statePub = n.advertise<nav_msgs::Odometry>("odom",1);
 
   ros::Subscriber cmd_velSub= n.subscribe("cmd_vel",1,cmd_velCB);
 
 
   // Create an Odometry message to store the robot state
+  // The state consists of x,y in the map frame, theta (or yaw) of the robot frame relative to the map frame, the velocity of the robot in the robot's frame (all in the x_robot direction), and omega, or the change in theta.
+  // All of this fits nicely into an Odometry message. The Odometry message provides room for much more. However, we will only populate the fields that we are using.
   nav_msgs::Odometry robot_state;
   // Create and initialize variables to store current and previous states (p stands for previous)
   // This could be stored in robot_state. But it is easier to use regular variable and then stuff it all back in robot_state at the end.
