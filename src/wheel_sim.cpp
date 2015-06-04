@@ -27,20 +27,32 @@ int main(int argc, char **argv)
   // Create a publisher object to publish the determined state of the robot. Odometry messages contain both Pose and Twist with covariance. In this simulator, we will not worry about the covariance.
   ros::Publisher wheel_velPub = n.advertise<geometry_msgs::Twist>("vel",1);
 
+  // Create a publisher object to publish the encoder count
+
   // Create a subscriber object to subscribe to the topic mc_cmd, which will receive a UInt8 message that contains the motor controller command.
   ros::Subscriber mc_cmdSub = n.subscribe("mc_cmd",1,mc_cmdCB);
 
   // This Twist message contains the wheel's velocity in its own frame. The z axis goes through the axle of the wheel. The x-axis point foward, and the y axis points up.
   geometry_msgs::Twist wheel_vel;
 
-  // Parameters of the motor and gearbox and wheel
-  // **TODO** Make these ROS parameters
-  const double tau_s = 98;     // stall torque in N*m
-  const double omega_n = 18.5; // no load speed in rad/s
-  const double I_bar = 1;      // Moment of inertia of the wheel in kg*m^2
-  const double m = 10;         // Mass of the wheel in kgs
-  const double r = 0.5;        // Radius of the wheel in meters
-  const double c = 3;          // Coloumb friction constant.
+  // Parameters of the motor and gearbox and wheel and encoder
+  // Set default values here.
+  double tau_s = 98;     // stall torque in N*m
+  double omega_n = 18.5; // no load speed in rad/s
+  double I_bar = 1;      // Moment of inertia of the wheel in kg*m^2
+  double m = 10;         // Mass of the wheel in kgs
+  double r = 0.5;        // Radius of the wheel in meters
+  double c = 3;          // Coloumb friction constant.
+  double tpm = 20000;    // Ticks per revolution of encoder
+
+  // Check to see if these parameters have been set and reassign values.
+  n.getParam("tau_s",tau_s);
+  n.getParam("omega_n",omega_n);
+  n.getParam("I_bar",I_bar);
+  n.getParam("m",m);
+  n.getParam("r",r);
+  n.getParam("c",c);
+  n.getParam("tpm",tpm);
 
   // Variable to store the toque applied to the wheel
   double T = 0;

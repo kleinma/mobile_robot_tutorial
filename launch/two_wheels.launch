@@ -1,0 +1,11 @@
+<launch>
+    <!-- Load the parameters for the left and right wheel -->
+    <rosparam command="load" file="$(find mobile_robot_tutorial)/config/two_wheels.yaml" />
+
+  <!-- Start up a wheel_sim node for the left wheel -->
+  <node pkg="mobile_robot_tutorial" type="wheel_sim" name="gps_convert_and_transform" output="screen" ns="left_wheel"/>
+
+  <!-- Start up a wheel_sim node for the left wheel -->
+  <node pkg="mobile_robot_tutorial" type="wheel_sim" name="gps_convert_and_transform" output="screen" ns="right_wheel"/>
+
+</launch>

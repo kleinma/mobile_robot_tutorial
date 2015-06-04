@@ -1,0 +1,18 @@
+---
+left_wheel:
+  tau_s: 98     # stall torque in N*m
+  omega_n: 18.5 # no load speed in rad/s
+  I_bar: 1      # Moment of inertia of the wheel in kg*m^2
+  m: 10         # Mass of the wheel in kgs
+  r: 0.5        # Radius of the wheel in meters
+  c: 3          # Viscous friction constant.
+  tpm: 20000    # Ticks per revolution of encoders
+
+right_wheel:
+  tau_s: 98     # stall torque in N*m
+  omega_n: 13   # no load speed in rad/s
+  I_bar: 1      # Moment of inertia of the wheel in kg*m^2
+  m: 10         # Mass of the wheel in kgs
+  r: 0.5        # Radius of the wheel in meters
+  c: 3          # Viscous friction constant.
+  tpm: 20000    # Ticks per revolution of encoders
