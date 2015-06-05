@@ -1,4 +1,6 @@
 ---
+b: 0.5
+
 left_wheel:
   tau_s: 98     # stall torque in N*m
   omega_n: 18.5 # no load speed in rad/s
