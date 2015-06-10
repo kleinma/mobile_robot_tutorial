@@ -8,7 +8,7 @@ left_wheel:
   m: 10         # Mass of the wheel in kgs
   r: 0.5        # Radius of the wheel in meters
   c: 3          # Viscous friction constant.
-  tpm: 20000    # Ticks per revolution of encoders
+  tpr: 20000    # Ticks per revolution of encoders
 
 right_wheel:
   tau_s: 98     # stall torque in N*m
@@ -17,4 +17,4 @@ right_wheel:
   m: 10         # Mass of the wheel in kgs
   r: 0.5        # Radius of the wheel in meters
   c: 3          # Viscous friction constant.
-  tpm: 20000    # Ticks per revolution of encoders
+  tpr: 20000    # Ticks per revolution of encoders

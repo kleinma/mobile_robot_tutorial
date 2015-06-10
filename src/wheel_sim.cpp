@@ -43,7 +43,7 @@ int main(int argc, char **argv)
   double m = 10;         // Mass of the wheel in kgs
   double r = 0.5;        // Radius of the wheel in meters
   double c = 3;          // Coloumb friction constant.
-  double tpm = 20000;    // Ticks per revolution of encoder
+  double tpr = 20000;    // Ticks per revolution of encoder
 
   // Check to see if these parameters have been set and reassign values.
   n.getParam("tau_s",tau_s);
@@ -52,9 +52,9 @@ int main(int argc, char **argv)
   n.getParam("m",m);
   n.getParam("r",r);
   n.getParam("c",c);
-  n.getParam("tpm",tpm);
+  n.getParam("tpr",tpr);
 
-  // Variable to store the toque applied to the wheel
+  // Variable to store the torque applied to the wheel
   double T = 0;
 
   // Variables to store the kinematics of the wheel

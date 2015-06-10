@@ -1,0 +1,3 @@
+<launch>
+  <include file="$(find mobile_robot_tutorial)/launch/two_wheels.launch" ns="robot0"/>
+</launch>
